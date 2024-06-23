@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# How to start the project:
+    npm start
+# How to build:
+    npm run build
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Learning anotations
 
-## Available Scripts
+    This project is made only for learning the framework React. In this readMe, you can see how i made my learning process.
 
-In the project directory, you can run:
+<!-- ------------------------------------------------- -->
 
-### `npm start`
+# Figma 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://www.figma.com/design/T6BLI1HfB81eYOiVgpqQz7/Projeto-Intro-ao-React?node-id=134-128
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Creating a list (using select)
 
-### `npm test`
+    This list must be prepared to receive any details and specificities sent from the database
+ 
+    I created a component called Dropdown to be a generic list component for any section of the application 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    We will use the props to set the informations for our component and after that we will use the native JS methos .map() to return to us a new list with the teams that must be presented by the Dropdown component. Always remember to set a key when you using a list because React will show a error on your console. Key values are important for identify and control your components and etc...
 
-### `npm run build`
+## Creating the button
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    How to insert information besides texts through props?
+    The React are prepared for theses scenario and the solution is to use CHILDREN components. To use this tool, instead of using props.text (in this case), you can use props.children, like this:
+    
+        const Button = (props) => {
+            return <button className="Button">{props.children}</button>;
+        };
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How the button reacts to the user click?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Because we are sending informations by using a form, we can use the onSubmit native function to "listen" the action. The problem is: when  the informations are sended, a default behavior is trigered and the page is reloaded. To prevent this behavior, we can set the "JS event" in the function created to control the submit and call the "preventDefault()" method to stop this behavior, like this:
 
-### `npm run eject`
+    const submitInfo = (event) => {
+        event.preventDefault()
+        console.log("Form foi submetido")
+    }
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## How to listen inputed information?
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    On JS, we can use the event.target.value to listen the inserted information by the user, like this:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    const onInserted = (e) => {
+        console.log(e.target.value)
+    } 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    Every JS event have a target with inumerous properties and the value is one of this properties.
 
-## Learn More
+## How to manage component's lifecycle?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    We use React Hooks to manipulate anything on DOM. To update this particular input, we will use the useState to "watch" the component changes and allow this component to re-render, like this:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    const [name, setName] = useState("");
+        we declare a const that the first item of the [] will be the name of the variable we want and the second item is a "function" that will define the value of the variable when we call this and set the value in the (). By default, we set a value to the variable when we call the useState(set you default value here). In this case, we are setting a empty string by default value.
 
-### Code Splitting
+     <TextField
+          label="Nome"
+          value={name}
+          required={true}
+          onChanged={(value) => setName(value)}
+          placeholder="Digite seu nome"
+        />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    This is a use of the ***set_value***: we call the setName and, when the user insert a value on the TextField component, the character he insert's will be added to the *name* variable.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+meuNome = "ashufhas"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+MeuNome = "ahusifuiashdfua"
 
-### Advanced Configuration
+meu_nome = "asiufhdas"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
