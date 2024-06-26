@@ -2,64 +2,69 @@ import { useState } from "react";
 import Banner from "./components/Banner";
 import Form from "./components/Form";
 import Team from "./components/Team";
+import Footer from "./components/Footer";
 
 function App() {
   const teams = [
     {
       name: "Programação",
-      primaryColor: "#57C278",
-      secondaryColor: "#d9f7e9",
+      primaryColor: "#D9F7E9",
+      secondaryColor: "#57C278",
     },
     {
       name: "Front-end",
-      primaryColor: "#82CFFA",
-      secondaryColor: "#E8F8FF",
+      primaryColor: "#E8F8FF",
+      secondaryColor: "#82CFFA",
     },
     {
       name: "Data Science",
-      primaryColor: "#A6D157",
-      secondaryColor: "#F0F8E2",
+      primaryColor: "#F0F8E2",
+      secondaryColor: "#A6D157",
     },
     {
       name: "Devops",
-      primaryColor: "#E06B69",
-      secondaryColor: "#FDE7E8",
+      primaryColor: "#FDE7E8",
+      secondaryColor: "#E06B69",
     },
     {
       name: "Ux e Design",
-      primaryColor: "#DB6EBF",
-      secondaryColor: "#FAE9F5",
+      primaryColor: "#FAE9F5",
+      secondaryColor: "#DB6EBF",
     },
     {
       name: "Mobile",
-      primaryColor: "#FFBA05",
-      secondaryColor: "#FFF5D9",
+      primaryColor: "#FFF5D9",
+      secondaryColor: "#FFBA05",
     },
     {
       name: " Inovação e Gestão",
-      primaryColor: "#FF8A29",
-      secondaryColor: "#FFEEDF",
+      primaryColor: "#FFEEDF",
+      secondaryColor: "#FF8A29",
     },
   ];
 
   const [members, setMembers] = useState([]);
 
   const onNewMemberAdded = (member) => {
-    console.log(member);
     setMembers([...members, member]);
   };
   return (
     <div className="App">
       <Banner />
-      <Form onRegisteredMember={(member) => onNewMemberAdded(member)} />
+      <Form
+        onRegisteredMember={(member) => onNewMemberAdded(member)}
+        team={teams.map(team => team.name)}
+      />
       {teams.map((team) => (
         <Team
-          teamName={team.name}
           key={team.name}
+          name={team.name}
           primaryColor={team.primaryColor}
           secondaryColor={team.secondaryColor}
+          members={members.filter(member => member.team === team.name)}
         />
       ))}
+      <Footer/>
     </div>
   );
 }

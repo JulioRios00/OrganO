@@ -74,3 +74,51 @@ MeuNome = "ahusifuiashdfua"
 
 meu_nome = "asiufhdas"
 
+## Other ways to sendo props for children components
+
+    We can use diferent ways to "tranfer" props for components in React. The most simple ways is to reference theses props by setting the term "props" in the function parameters, like these:
+
+    const Dropdown = (props) => {
+    
+    const onInserted = (e) => {
+        props.onChanged(e.target.value);
+    };
+    return (
+        <div className="Dropdown">
+            <label>{props.label}</label>
+            <select
+                onChange={onInserted}
+                required={props.required}
+                value={props.value}
+            >
+                {props.itens.map((item) => (
+                <option key={item}>{item}</option>
+                ))}
+            </select>
+        </div>
+    );
+    };
+
+    export default Dropdown;
+    
+    To use the props, you will have to add in the fields the "prop.yourValue" to set the values. 
+
+    Also we can use a unstructured way to sendo the props, like these:
+
+const TeamMember = ({name, role, image}) => {
+    return  (
+        <div className='teamMember'>
+            <div children='header'>
+                <img src={image} alt={name}/>
+            </div>
+            <div className='footer'>
+                <h4>{name}</h4>
+                <h5>{role}</h5>
+            </div>
+        </div>
+    )
+}
+
+export default TeamMember
+
+    In this case, the props are setted on the parameter field of the function but unstructered as an object with the fields that will needed to be used.
