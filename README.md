@@ -121,4 +121,4 @@ const TeamMember = ({name, role, image}) => {
 
 export default TeamMember
 
-    In this case, the props are setted on the parameter field of the function but unstructered as an object with the fields that will needed to be used.# organo
+    In this case, the props are setted on the parameter field of the function but unstructered as an object with the fields that will needed to be used.
