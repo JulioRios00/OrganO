@@ -48,23 +48,31 @@ function App() {
   const onNewMemberAdded = (member) => {
     setMembers([...members, member]);
   };
+
+  const deleteMember = () => {
+    console.log("Member deleted");
+  };
+
   return (
     <div className="App">
       <Banner />
       <Form
         onRegisteredMember={(member) => onNewMemberAdded(member)}
-        team={teams.map(team => team.name)}
+        team={teams.map((team) => team.name)}
       />
-      {teams.map((team) => (
-        <Team
-          key={team.name}
-          name={team.name}
-          primaryColor={team.primaryColor}
-          secondaryColor={team.secondaryColor}
-          members={members.filter(member => member.team === team.name)}
-        />
-      ))}
-      <Footer/>
+      {teams.map((team) => {
+        return (
+          <Team
+            key={team.name}
+            name={team.name}
+            primaryColor={team.primaryColor}
+            secondaryColor={team.secondaryColor}
+            members={members.filter((member) => member.team === team.name)}
+            deleteMember={deleteMember}
+          />
+        );
+      })}
+      <Footer />
     </div>
   );
 }

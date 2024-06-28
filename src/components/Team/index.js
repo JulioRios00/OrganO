@@ -7,22 +7,26 @@ const Team = (props) => {
     borderColor: props.secondaryColor,
   };
 
-  return (
-    (props.members.length > 0) ?
+  return props.members.length > 0 ? (
     <section className="team" style={colors}>
       <h3 style={colors}>{props.name}</h3>
       <div className="members">
-        {props.members.map((member) => (
-          <TeamMember
-            backgroundColor={props.secondaryColor}
-            name={member.name}
-            role={member.role}
-            image={member.image}
-            key={member.name}
-          />
-        ))}
+        {props.members.map((member) => {
+          return (
+            <TeamMember
+              backgroundColor={props.secondaryColor}
+              name={member.name}
+              role={member.role}
+              image={member.image}
+              key={member.name}
+              deleteMember={props.deleteMember}
+            />
+          );
+        })}
       </div>
-    </section> : ""
+    </section>
+  ) : (
+    ""
   );
 };
 
