@@ -1,25 +1,37 @@
 import TeamMember from "../TeamMember";
 import "./index.css";
+import hexToRgba from 'hex-to-rgba';
+import { v4 as uuidv4 } from 'uuid';
 
 const Team = (props) => {
-  const colors = {
-    backgroundColor: props.primaryColor,
-    borderColor: props.secondaryColor,
-  };
+
+   const handleDeleteMember = (memberId) => {
+      props.deleteMember(memberId)
+   }
 
   return props.members.length > 0 ? (
-    <section className="team" style={colors}>
-      <h3 style={colors}>{props.name}</h3>
+    <section className="team" style={{backgroundImage:'url(/imgs/fundo.png)', backgroundColor:hexToRgba(props.color, "0.6")}}>
+      <input
+        type="color"
+        onChange={e => props.changeTeamColor(e.target.value, props.id)}
+        className="input-color"
+        value={props.color}
+        changeColor={props.changeColor}
+      />
+      <h3 styles={{BorderColor:props.color}}>{props.name}</h3>
       <div className="members">
         {props.members.map((member) => {
+          
           return (
             <TeamMember
-              backgroundColor={props.secondaryColor}
+              id={uuidv4()}
+              backgroundColor={props.color}
               name={member.name}
               role={member.role}
               image={member.image}
               key={member.name}
-              deleteMember={props.deleteMember}
+              deleteMember={() => handleDeleteMember(member.id)}
+              member={member}
             />
           );
         })}

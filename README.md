@@ -122,3 +122,84 @@ const TeamMember = ({name, role, image}) => {
 export default TeamMember
 
     In this case, the props are setted on the parameter field of the function but unstructered as an object with the fields that will needed to be used.
+
+
+## Creating the deleteMember action
+
+    Like any other application that we can add users to the platform, it's important to give the choice to delete any user too.
+
+    In practical therms, we will start creating a simple method only retuning a console.log to learn how props can flow throw the project and perform their actions in any place of the code.
+
+    On App.js file, we have created this method returning the console.log only:
+
+        const deleteMember = () => {
+            console.log("Member deleted");
+        };
+
+    Now we have to send this by props to the other components:
+
+      return (
+          <Team
+            key={team.name}
+            name={team.name}
+            primaryColor={team.primaryColor}
+            secondaryColor={team.secondaryColor}
+            members={members.filter((member) => member.team === team.name)}
+            deleteMember={deleteMember} ------------------
+          />
+        );
+
+    Now we added the deleteMember props to the Team component, so now we have to add this prop to the children of this method to grant they can use this method on they our dependencies.
+
+        On Team component:
+
+        return (
+            <TeamMember
+              backgroundColor={props.secondaryColor}
+              name={member.name}
+              role={member.role}
+              image={member.image}
+              key={member.name}
+              deleteMember={props.deleteMember}
+            />
+          );
+
+    Finally on team member:
+
+    return (
+        <div className="teamMember">
+        
+        <IoCloseCircleSharp className="deleteMember" onClick={props.deleteMember} />
+    
+    Now the component teamMember can use the deleteMember method declared on App.js file!
+
+
+## Changing the team color
+
+    Now we want to change the color of the teams and for the first step we will add a new input:
+
+    On Team component:
+
+      return props.members.length > 0 ? (
+        <section className="team" style={colors}>
+            <input type="color" className="input-color" />
+            <h3 style={colors}>{props.name}</h3>
+
+    On this moment, this component isn't controlled and don't change anything.
+
+## How this works?!?!?!
+
+    We have a lot of programming paradigms on many languages, but to understand how our's application works (specifically the change color component), it's important to understand these 3 paradigms (short explanations):
+
+    IMPERATIVE, DECLARATIVE AND REACTIVE PROGRAMMIMG
+
+    Imperative:
+    We order the application to do something, like a for, switch, if and etc, giving explicity instructions and controlling these instructions.
+
+    Declarative:
+    Like in SQL, we just have to DECLARATE the action for the language, like SELECT. We don't concern how the language will do this action and only declarates what we want the language do for us
+
+    Reative:
+    Reacts accordingly to the alterations of the DOM.
+
+

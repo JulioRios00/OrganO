@@ -1,13 +1,15 @@
 import "./TeamMember.css";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 const TeamMember = (props) => {
   return (
     <div className="teamMember">
-      <div className="deleteMember" onClick={props.deleteMember}>
-        delete
-      </div>
+      <IoCloseCircleSharp
+        size={25}
+        className="deleteMember"
+        onClick={() => props.deleteMember(props.id)}
+      />
       <div
-        children="header"
         style={{
           backgroundColor: props.backgroundColor,
           borderTopRightRadius: 12,

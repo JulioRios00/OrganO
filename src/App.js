@@ -3,70 +3,52 @@ import Banner from "./components/Banner";
 import Form from "./components/Form";
 import Team from "./components/Team";
 import Footer from "./components/Footer";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const teams = [
-    {
-      name: "Programação",
-      primaryColor: "#D9F7E9",
-      secondaryColor: "#57C278",
-    },
-    {
-      name: "Front-end",
-      primaryColor: "#E8F8FF",
-      secondaryColor: "#82CFFA",
-    },
-    {
-      name: "Data Science",
-      primaryColor: "#F0F8E2",
-      secondaryColor: "#A6D157",
-    },
-    {
-      name: "Devops",
-      primaryColor: "#FDE7E8",
-      secondaryColor: "#E06B69",
-    },
-    {
-      name: "Ux e Design",
-      primaryColor: "#FAE9F5",
-      secondaryColor: "#DB6EBF",
-    },
-    {
-      name: "Mobile",
-      primaryColor: "#FFF5D9",
-      secondaryColor: "#FFBA05",
-    },
-    {
-      name: " Inovação e Gestão",
-      primaryColor: "#FFEEDF",
-      secondaryColor: "#FF8A29",
-    },
-  ];
+  const [teams, setTeams] = useState([]);
 
   const [members, setMembers] = useState([]);
 
   const onNewMemberAdded = (member) => {
-    setMembers([...members, member]);
+    const newMember = { ...member, id: uuidv4() };
+    setMembers([...members, newMember]);
   };
 
-  const deleteMember = () => {
-    console.log("Member deleted");
+  const deleteMember = (id) => {
+    setMembers(members.filter((member) => member.id !== id));
   };
 
+  const changeTeamColor = (color, id) => {
+    setTeams(
+      teams.map((team) => {
+        if (team.id === id) {
+          team.color = color;
+        }
+        return team;
+      })
+    );
+  };
+
+  const addNewTeam = (newTeam) => {
+    setTeams([...teams, { ...newTeam, id: uuidv4() }]);
+  };
   return (
     <div className="App">
       <Banner />
       <Form
+        addNewTeam={addNewTeam}
         onRegisteredMember={(member) => onNewMemberAdded(member)}
         team={teams.map((team) => team.name)}
-      />
+      />  
       {teams.map((team) => {
         return (
           <Team
+            changeTeamColor={changeTeamColor}
             key={team.name}
+            id={team.id}
             name={team.name}
-            primaryColor={team.primaryColor}
-            secondaryColor={team.secondaryColor}
+            color={team.color}
             members={members.filter((member) => member.team === team.name)}
             deleteMember={deleteMember}
           />
