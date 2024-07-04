@@ -1,7 +1,6 @@
-import "./TextField.css";
+import "./FormField.css";
 
-const TextField = (props) => {
-  //just for learning how to concatenate things
+const FormField = (props, ) => {
   const modifyedPlaceholder = `${props.placeholder}...`;
 
   const onInserted = (e) => {
@@ -10,9 +9,10 @@ const TextField = (props) => {
 
   return (
     <>
-      <div className="TextField">
+      <div className={`FormField FormField-${props.type}`}>
         <label>{props.label}</label>
         <input
+          type={props.type}
           value={props.value}
           onChange={onInserted}
           required={props.required}
@@ -23,4 +23,4 @@ const TextField = (props) => {
   );
 };
 
-export default TextField;
+export default FormField;

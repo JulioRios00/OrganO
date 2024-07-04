@@ -30,6 +30,14 @@ function App() {
     );
   };
 
+  const handleFavorite = (id) => {
+    setMembers(member => {
+      if(member.id === id) {
+        member.favorite = !member.favorite
+      }
+    })
+  }
+
   const addNewTeam = (newTeam) => {
     setTeams([...teams, { ...newTeam, id: uuidv4() }]);
   };
@@ -44,6 +52,7 @@ function App() {
       {teams.map((team) => {
         return (
           <Team
+            toFavorite={handleFavorite}
             changeTeamColor={changeTeamColor}
             key={team.name}
             id={team.id}

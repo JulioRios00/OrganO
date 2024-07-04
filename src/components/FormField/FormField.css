@@ -1,14 +1,14 @@
-.Dropdown {
+.FormField {
     margin: 1.5rem 0;
 }
 
-.Dropdown label {
+.FormField label {
     display: block;
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
 
-.Dropdown select {
+.FormField input {
     background-color: #fff;
     box-shadow: 0.625rem 0.625rem 1.875rem rgba(0, 0, 0, 0.06);
     width: 100%;
@@ -16,4 +16,9 @@
     font-size: 1.5rem;
     padding: 1.5625rem;
     box-sizing: border-box;
+}
+
+.FormField-color input {
+    padding: 0.3125rem 1.5625rem;
+    height: 2.5rem;
 }

@@ -1,13 +1,13 @@
 .Button {
     background-color: #6278F7;
-    width: 187px;
-    height: 80px;
-    padding: 32px;
-    top: 1313px;
-    left: 255px;
-    border-radius: 10px;
+    width: 11.6875rem;
+    height: 5rem;
+    padding: 2rem;
+    top: 82.0625rem;
+    left: 15.9375rem;
+    border-radius: 0.625rem;
     border: 0;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
     cursor: pointer;
     color: #fff;

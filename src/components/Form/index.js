@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../Button";
 import Dropdown from "../Dropdown";
-import TextField from "../TextField";
+import FormField from "../FormField";
 import "./Form.css";
 
 const Form = (props) => {
@@ -41,21 +41,21 @@ const Form = (props) => {
     <section className="Form">
       <form onSubmit={submitMemberInfo}>
         <h2>Preencha os dados para criar o card do colaborador.</h2>
-        <TextField
+        <FormField 
           label="Nome"
           value={name}
           required
           onChanged={(value) => setName(value)}
           placeholder="Digite seu nome"
         />
-        <TextField
+        <FormField 
           label="Cargo"
           value={role}
           required
           onChanged={(value) => setRole(value)}
           placeholder="Qual seu cargo"
         />
-        <TextField
+        <FormField 
           label="Imagem"
           value={image}
           placeholder="Digite o endereço da imagem"
@@ -72,14 +72,15 @@ const Form = (props) => {
       </form>
       <form onSubmit={submitTeamInfo}>
         <h2>Preencha os dados para criar um novo time.</h2>
-        <TextField
+        <FormField 
           label="Nome"
           value={teamName}
           required
           onChanged={(value) => setTeamName(value)}
           placeholder="Digite o nome do time"
         />
-        <TextField
+        <FormField 
+          type={"color"}
           label="Cor"
           value={teamColor}
           required

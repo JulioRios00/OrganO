@@ -1,14 +1,14 @@
 .team {
     text-align: center;
-    padding: 32px;
+    padding: 2rem;
     position: relative;
 }
 
 .team h3 {
-    font-size: 32px;
-    border-bottom: 2px solid;
+    font-size: 2rem;
+    border-bottom: 0.125rem solid;
     display: inline-block;
-    padding-bottom: 8px;
+    padding-bottom: 0.5rem;
 }
 
 .team .members {
@@ -20,9 +20,9 @@
 
 .input-color {
     position: absolute;
-    top: 20px;
-    right: 50px;
-    width: 40px;
+    top: 1.25rem;
+    right: 3.125rem;
+    width: 2.5rem;
     border: none;
     padding: 0;
 }

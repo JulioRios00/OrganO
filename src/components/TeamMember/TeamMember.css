@@ -1,9 +1,9 @@
 .teamMember {
-  width: 280px;
+  width: 17.5rem;
   background-color: rgb(255, 252, 252);
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: relative;
-  border-radius: 15px;
+  border-radius: 0.9375rem;
 }
 
 .teamMember .header {
@@ -11,35 +11,39 @@
 }
 
 .teamMember img {
-  width: 100px;
+  width: 6.25rem;
   border-radius: 50%;
   position: relative;
-  bottom: -50px;
+  bottom: -3.125rem;
 }
 
 .teamMember .footer {
   background: #ffffff;
-  padding-top: 70px;
+  padding-top: 4.375rem;
 }
 
 .teamMember .footer h4 {
   color: #6278f7;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   position: relative;
 }
 
 .teamMember .footer h5 {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
   color: #212121;
-  padding: 0 16px;
+  padding: 0 1rem;
 }
 
 .deleteMember {
   position: absolute;
-  right: -15px;
-  top: -20px;
+  right: -0.9375rem;
+  top: -1.25rem;
+}
+
+.favorite {
+  margin-bottom: 1.25rem;
 }

@@ -29,9 +29,11 @@ const Team = (props) => {
               name={member.name}
               role={member.role}
               image={member.image}
+              label={member.label}
               key={member.name}
               deleteMember={() => handleDeleteMember(member.id)}
               member={member}
+              toFavorite={false}
             />
           );
         })}
