@@ -33,7 +33,7 @@ const Team = (props) => {
               key={member.name}
               deleteMember={() => handleDeleteMember(member.id)}
               member={member}
-              toFavorite={false}
+              setFavorite={props.setFavorite}
             />
           );
         })}

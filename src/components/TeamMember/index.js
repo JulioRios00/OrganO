@@ -2,7 +2,7 @@ import "./TeamMember.css";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaRegHeart, FaHeart  } from "react-icons/fa";
 
-const TeamMember = (props) => {
+const TeamMember = (props, setFavorite) => {
   return (
     <div className="teamMember">
       <IoCloseCircleSharp
@@ -23,8 +23,11 @@ const TeamMember = (props) => {
         <h4>{props.name}</h4>
         <h5>{props.role}</h5>
         <div className="favorite">
-          {console.log(props)}
-          {props.toFavorite ? <FaHeart onClick={handleFavorite}/> : <FaRegHeart onClick={handleFavorite}/>}
+          {props.member.setFavorite ? (
+            <FaHeart onClick={() => props.setFavorite(props.member.id)} color="ff0000"/>
+          ) : (
+            <FaRegHeart onClick={() => props.setFavorite(props.member.id)} />
+          )}
         </div>
       </div>
     </div>

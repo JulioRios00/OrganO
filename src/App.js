@@ -7,19 +7,18 @@ import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [teams, setTeams] = useState([]);
-
   const [members, setMembers] = useState([]);
 
-  const onNewMemberAdded = (member) => {
+  const handleNewMemberAdded = (member) => {
     const newMember = { ...member, id: uuidv4() };
     setMembers([...members, newMember]);
   };
 
-  const deleteMember = (id) => {
+  const handleDeleteMember = (id) => {
     setMembers(members.filter((member) => member.id !== id));
   };
 
-  const changeTeamColor = (color, id) => {
+  const handleTeamColor = (color, id) => {
     setTeams(
       teams.map((team) => {
         if (team.id === id) {
@@ -31,38 +30,46 @@ function App() {
   };
 
   const handleFavorite = (id) => {
-    setMembers(member => {
-      if(member.id === id) {
-        member.favorite = !member.favorite
-      }
-    })
-  }
+    setMembers(members =>
+      members.map(member => {
+        if (member.setFavorite === undefined) {
+          member.setFavorite = false;
+        }
+        if (member.id === id) {
+          return {
+            ...member,
+            setFavorite: !member.setFavorite
+          };
+        }
+        return member;
+      })
+    );
+  };
 
   const addNewTeam = (newTeam) => {
     setTeams([...teams, { ...newTeam, id: uuidv4() }]);
   };
+  
   return (
     <div className="App">
       <Banner />
       <Form
         addNewTeam={addNewTeam}
-        onRegisteredMember={(member) => onNewMemberAdded(member)}
+        onRegisteredMember={(member) => handleNewMemberAdded(member)}
         team={teams.map((team) => team.name)}
       />  
-      {teams.map((team) => {
-        return (
-          <Team
-            toFavorite={handleFavorite}
-            changeTeamColor={changeTeamColor}
-            key={team.name}
-            id={team.id}
-            name={team.name}
-            color={team.color}
-            members={members.filter((member) => member.team === team.name)}
-            deleteMember={deleteMember}
-          />
-        );
-      })}
+      {teams.map((team) => (
+        <Team
+          setFavorite={handleFavorite}
+          changeTeamColor={handleTeamColor}
+          key={team.id}
+          id={team.id}
+          name={team.name}
+          color={team.color}
+          members={members.filter((member) => member.team === team.name)}
+          deleteMember={handleDeleteMember}
+        />
+      ))}
       <Footer />
     </div>
   );
