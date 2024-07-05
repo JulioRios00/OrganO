@@ -39,6 +39,25 @@ const Form = (props) => {
 
   return (
     <section className="Form">
+      <form onSubmit={submitTeamInfo}>
+        <h2>Preencha os dados para criar um novo time.</h2>
+        <FormField 
+          label="Nome"
+          value={teamName}
+          required
+          onChanged={(value) => setTeamName(value)}
+          placeholder="Digite o nome do time"
+        />
+        <FormField 
+          type={"color"}
+          label="Cor"
+          value={teamColor}
+          required
+          onChanged={(value) => setTeamColor(value)}
+          placeholder="Insira um valor HEX (#000000)"
+        />
+        <Button>Criar um time</Button>
+      </form>
       <form onSubmit={submitMemberInfo}>
         <h2>Preencha os dados para criar o card do colaborador.</h2>
         <FormField 
@@ -70,25 +89,7 @@ const Form = (props) => {
         />
         <Button>Criar Card</Button>
       </form>
-      <form onSubmit={submitTeamInfo}>
-        <h2>Preencha os dados para criar um novo time.</h2>
-        <FormField 
-          label="Nome"
-          value={teamName}
-          required
-          onChanged={(value) => setTeamName(value)}
-          placeholder="Digite o nome do time"
-        />
-        <FormField 
-          type={"color"}
-          label="Cor"
-          value={teamColor}
-          required
-          onChanged={(value) => setTeamColor(value)}
-          placeholder="Insira um valor HEX (#000000)"
-        />
-        <Button>Criar um time</Button>
-      </form>
+      
     </section>
   );
 };
